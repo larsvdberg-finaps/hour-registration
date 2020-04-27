@@ -4,7 +4,7 @@ from flask import Flask
 from flask_restful import Api
 
 from resources.work_portions import WorkPortion, WorkPortions
-from resources.work_types import WorkTypes
+from resources.work_types import WorkTypes, WorkType
 from resources.homepage import HomePage
 
 app = Flask(__name__)
@@ -18,6 +18,7 @@ api = Api(app)
 api.add_resource(WorkPortion, '/workportion/<int:id>')
 api.add_resource(WorkPortions, '/workportions')
 api.add_resource(WorkTypes, '/worktypes')
+api.add_resource(WorkType, '/worktype')
 
 # remove later when we have a frontend
 api.add_resource(HomePage, '/')
