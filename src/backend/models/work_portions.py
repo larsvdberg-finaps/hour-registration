@@ -11,12 +11,12 @@ class WorkDetailsModel(db.Model):
     end_datetime = db.Column(db.Float(precision=0))
     remarks = db.Column(db.String(80))
 
-    def __init__(self, category, subcategory, specification, start_datetime, end_datetime, remarks):
+    def __init__(self, category, subcategory, specification, start_timestamp, end_timestamp, remarks):
         self.category = category
         self.subcategory = subcategory
         self.specification = specification
-        self.start_datetime = start_datetime
-        self.end_datetime = end_datetime
+        self.start_timestamp = start_timestamp
+        self.end_timestamp = end_timestamp
         self.remarks = remarks
 
     def json(self):
@@ -38,32 +38,32 @@ class WorkDetailsModel(db.Model):
         return cls.query.filter_by(id=id).first()
 
     @classmethod
-    def find_by_time_and_category(cls, category, subcategory, specification, start_datetime, end_datetime):
+    def find_by_time_and_category(cls, category, subcategory, specification, start_timestamp, end_timestamp):
         if category=="":
             return cls.query.filter_by(
-                start_datetime=start_datetime,
-                end_datetime=end_datetime
+                start_datetime=start_timestamp,
+                end_datetime=end_timestamp
             ).all()
         elif subcategory=="":
             return cls.query.filter_by(
                 category=category,
-                start_datetime=start_datetime,
-                end_datetime=end_datetime
+                start_datetime=start_timestamp,
+                end_datetime=end_timestamp
             ).all()
         elif specification=="":
             return cls.query.filter_by(
                 category=category,
                 subcategory=subcategory,
-                start_datetime=start_datetime,
-                end_datetime=end_datetime
+                start_datetime=start_timestamp,
+                end_datetime=end_timestamp
             ).all()
         else:
             return cls.query.filter_by(
                 category=category,
                 subcategory=subcategory,
                 specification=specification,
-                start_datetime=start_datetime,
-                end_datetime=end_datetime
+                start_datetime=start_timestamp,
+                end_datetime=end_timestamp
             ).all()
 
     @classmethod
