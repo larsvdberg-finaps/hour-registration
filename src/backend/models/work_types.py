@@ -1,4 +1,6 @@
 from db import db
+from helpers.misc import timestamp_to_string
+
 
 class WorkTypesModel(db.Model):
     __tablename__ = 'work_types'
@@ -7,15 +9,13 @@ class WorkTypesModel(db.Model):
     category = db.Column(db.String(80))
     subcategory = db.Column(db.String(80))
     specification = db.Column(db.String(80))
-    active = db.Column(db.Boolean)
     bookmarked = db.Column(db.Boolean)
     last_used = db.Column(db.Float(precision=3))
 
-    def __init__(self, category, subcategory, specification, active, bookmarked, last_used):
+    def __init__(self, category, subcategory, specification, bookmarked, last_used):
         self.category = category
         self.subcategory = subcategory
         self.specification = specification
-        self.active = active
         self.bookmarked = bookmarked
         self.last_used = last_used
 
@@ -24,9 +24,8 @@ class WorkTypesModel(db.Model):
             'category': self.category,
             'subcategory': self.subcategory,
             'specification': self.specification,
-            'active': self.active,
             'bookmarked': self.bookmarked,
-            'last_used': self.last_used,
+            'last_used': timestamp_to_string(self.last_used),
         }
 
     @classmethod
@@ -34,7 +33,7 @@ class WorkTypesModel(db.Model):
         return cls.query.filter_by(category=category, subcategory=subcategory, specification=specification).first()
 
     @classmethod
-    def find_by_id(cls, name):
+    def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
 
     def save_to_db(self):
