@@ -1,0 +1,23 @@
+{
+    "Internal Ops": {
+        "Team Meeting": [
+            "Standup",
+            "Deliverables",
+            "Retro",
+            "BiWeekly",
+            "Informal"
+        ]
+    },
+    "Training": {
+        "": [
+            "DevOps",
+            "Software Engineering"
+        ]
+    },
+    "Rijkswaterstaat - NetwerkBeheerVisie": {
+        "_SHORTHAND": "RWS - NBV",
+        "Infra": [
+            ""
+        ]
+    }
+}
